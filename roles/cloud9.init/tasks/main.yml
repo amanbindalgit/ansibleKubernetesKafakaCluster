@@ -1,13 +1,12 @@
 ---
 
-#  - name: Copy template cloudformation
-#    template: src=lab-ide-vpc.template dest=/tmp/lab-ide-vpc.json
-#
+  - name: Copy template cloudformation
+    template: src=lab-ide-vpc.template dest=/tmp/lab-ide-vpc.json
 
   - name: Copy template init.sh
     template: src=init.sh dest=/tmp/init.sh
 
-#  - shell: "aws cloudformation create-stack --stack-name {{cloudformation.stack_name}} --template-body file:///tmp/lab-ide-vpc.json --capabilities CAPABILITY_IAM"
+  - shell: "aws cloudformation create-stack --stack-name {{cloudformation.stack_name}} --template-body file:///tmp/lab-ide-vpc.json --capabilities CAPABILITY_IAM"
 
   - shell: "aws s3api create-bucket --bucket {{s3.bucket_name}}"
 

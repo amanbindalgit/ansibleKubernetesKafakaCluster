@@ -19,7 +19,7 @@ Change the group_var/all/*.yml to have your own var name
  2. Wait until the IDE is UP (check the output for the url)
  3. ⚠️⚠️Open the IDE via the url and **disable AWS  managed temporary credentials**  (via Preference => Aws Settings)
 
-**Creating kubernetes cluster with Kafka : **
+**Creating kubernetes cluster with Kafka :**
  1. Run : `ansible-playbook run-cluster.yml`
 
 

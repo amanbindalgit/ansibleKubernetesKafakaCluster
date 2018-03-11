@@ -1,0 +1,7 @@
+---
+
+  - name: Create cloud9 IDE
+    hosts: localhost
+    gather_facts: true
+    roles:
+      - kafka.cluster

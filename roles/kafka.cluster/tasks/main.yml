@@ -1,0 +1,38 @@
+
+  - name: create cluster
+    shell: "kops create cluster --name {{k8s.cluster_name}}.cluster.k8s.local --zones $AWS_AVAILABILITY_ZONES   --yes"
+
+  - name: Waiting the cluster to be up
+    shell : "kubectl get nodes"
+    register: task_result
+    until: task_result.rc == 0
+    retries: 30
+    delay: 30
+
+  - name: Wait for nodes to be ready
+    shell: "kubectl get nodes"
+    register: nodes
+    until:
+      - '" Ready "  in nodes.stdout'
+    retries: 30
+    delay: 30
+
+  - name: Create namespace
+    shell: "kubectl create ns {{k8s.namespace}}"
+    retries: 10
+    delay: 20
+    register: namespace
+    until: namespace.rc == 0
+    retries: 30
+    delay: 30
+
+  - name: init helm
+    shell: "helm init --upgrade && helm repo add incubator http://storage.googleapis.com/kubernetes-charts-incubator"
+    register: init
+    until: init.rc == 0
+    retries: 30
+    delay: 30
+
+
+  - name: Lunch Kafka Cluster
+    shell: "helm install --name {{k8s.cluster_name}} --set global.namespace={{k8s.namespace}} incubator/kafka"

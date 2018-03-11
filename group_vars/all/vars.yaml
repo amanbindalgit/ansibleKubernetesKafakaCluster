@@ -1,0 +1,12 @@
+---
+cloudformation:
+  stack_name: k8s-kafka-test
+
+
+s3:
+  bucket_name: k8s-kafka-elarib
+
+
+k8s:
+  cluster_name: k8s-kafka
+  namespace: k8s-kafka

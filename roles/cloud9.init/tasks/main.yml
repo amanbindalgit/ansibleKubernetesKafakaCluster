@@ -1,0 +1,21 @@
+---
+
+#  - name: Copy template cloudformation
+#    template: src=lab-ide-vpc.template dest=/tmp/lab-ide-vpc.json
+#
+
+  - name: Copy template init.sh
+    template: src=init.sh dest=/tmp/init.sh
+
+#  - shell: "aws cloudformation create-stack --stack-name {{cloudformation.stack_name}} --template-body file:///tmp/lab-ide-vpc.json --capabilities CAPABILITY_IAM"
+
+  - shell: "aws s3api create-bucket --bucket {{s3.bucket_name}}"
+
+
+  - shell: "aws s3 --recursive cp ./ s3://{{s3.bucket_name}}/"
+
+  - shell: "aws s3 cp /tmp/init.sh s3://{{s3.bucket_name}}/init.sh"
+
+  - debug:
+      msg: "Please wait until the cloufromation is up and run `aws s3 cp --recursive s3://{{s3.bucket_name}}/ . && chmod +x init.sh && . ./init.sh` "
+

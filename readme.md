@@ -15,18 +15,10 @@ In order to deploy Kafka Cluster with 3 brokers on Kubernetes, we used ansible t
 **Creating Cloud9 IDE : **
  1. Run : `ansible-playbook cloud9.yml`
  2. Wait until the IDE is UP (check the output for the url)
- 3. Open the IDE via the url and **disable AWS  managed temporary credentials**  (via Preference => Aws Settings)
+ 3. ⚠️⚠️Open the IDE via the url and **disable AWS  managed temporary credentials**  (via Preference => Aws Settings)
 
 **Creating kubernetes cluster with Kafka : **
  1. Run : `ansible-playbook run-cluster.yml`
-
-
-**Creating kubernetes cluster with Kafka : **
- 1. Run : `ansible-playbook run-cluster.yml`
-
-
-
-
 
 
 ## Testing
